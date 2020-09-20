@@ -1,4 +1,4 @@
-//  Copyright (c) 2017-2018 Agustin Berge
+//  Copyright (c) 2017-2020 Agustin Berge
 //
 //  SPDX-License-Identifier: BSL-1.0
 //  Distributed under the Boost Software License, Version 1.0. (See accompanying
@@ -14,6 +14,7 @@
 #include <cstddef>
 #include <cstdio>
 #include <ctime>
+#include <iterator>
 #include <ostream>
 #include <stdexcept>
 #include <string>
@@ -280,5 +281,40 @@ namespace hpx { namespace util {
         detail::format_arg const format_args[] = {args..., 0};
         detail::format_to(os, format_str, format_args, sizeof...(Args));
         return os;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    namespace detail {
+        template <typename Range>
+        struct format_join
+        {
+            Range const& rng;
+            boost::string_ref delim;
+
+            friend void format_value(std::ostream& os, boost::string_ref spec,
+                format_join const& value)
+            {
+                using std::begin;
+                auto const first = begin(value.rng);
+
+                using std::end;
+                auto const last = end(value.rng);
+
+                using value_type = typename std::decay<decltype(*first)>::type;
+                for (auto iter = first; iter != last; ++iter)
+                {
+                    if (iter != first)
+                        os << value.delim;
+                    detail::formatter<value_type>::call(os, spec, &*iter);
+                }
+            }
+        };
+    }    // namespace detail
+
+    template <typename Range>
+    detail::format_join<Range> format_join(
+        Range const& range, boost::string_ref delimiter = "") noexcept
+    {
+        return {range, delimiter};
     }
 }}    // namespace hpx::util
