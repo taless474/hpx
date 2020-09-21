@@ -104,7 +104,7 @@ namespace hpx { namespace cds {
                 typedef ::cds::urcu::gc<::cds::urcu::general_buffered<>>
                     rcu_gpb;
                 // Initialize general_buffered RCU
-                rcu_gpb gpbRCU;
+                ::cds::urcu::general_buffered<>::Construct(256);
                 ::cds::threading::Manager::attachThread();
                 break;
             }
@@ -126,6 +126,7 @@ namespace hpx { namespace cds {
                 break;
             case smr_t::rcu:
                 ::cds::threading::Manager::detachThread();
+                ::cds::urcu::general_buffered<>::Destruct(true);
                 break;
             }
         }
