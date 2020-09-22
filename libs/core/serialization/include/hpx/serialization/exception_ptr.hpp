@@ -7,7 +7,7 @@
 #pragma once
 
 #include <hpx/config.hpp>
-#include <hpx/modules/functional.hpp>
+#include <hpx/functional/function.hpp>
 #include <hpx/serialization/serialization_fwd.hpp>
 
 #include <exception>

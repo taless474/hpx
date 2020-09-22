@@ -14,10 +14,11 @@
 #include <hpx/resiliency/async_replicate.hpp>
 #include <hpx/resiliency/resiliency_cpos.hpp>
 
+#include <hpx/functional/invoke.hpp>
+#include <hpx/functional/invoke_fused.hpp>
 #include <hpx/modules/async_local.hpp>
 #include <hpx/modules/concepts.hpp>
 #include <hpx/modules/datastructures.hpp>
-#include <hpx/modules/functional.hpp>
 #include <hpx/modules/futures.hpp>
 
 #include <cstddef>
