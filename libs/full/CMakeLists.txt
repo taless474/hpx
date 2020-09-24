@@ -31,7 +31,7 @@ set(_hpx_full_modules
     mpi_base
     performance_counters
     program_options
-    resiliency
+    resiliency_distributed
     resource_partitioner
     runtime_configuration
     runtime_local
@@ -42,7 +42,7 @@ set(_hpx_full_modules
 # cmake-format: on
 
 hpx_info("")
-hpx_info("Configuring libhpx modules:")
+hpx_info("Configuring libhpx_full modules:")
 
 foreach(module ${_hpx_full_modules})
   add_subdirectory(${module})

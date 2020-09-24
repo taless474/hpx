@@ -8,7 +8,7 @@
 .. _full_modules:
 
 ==================
-Main |hpx| modules
+full modules
 ==================
 
 .. toctree::
@@ -34,7 +34,7 @@ Main |hpx| modules
    /libs/full/mpi_base/docs/index.rst
    /libs/full/performance_counters/docs/index.rst
    /libs/full/program_options/docs/index.rst
-   /libs/full/resiliency/docs/index.rst
+   /libs/full/resiliency_distributed/docs/index.rst
    /libs/full/resource_partitioner/docs/index.rst
    /libs/full/runtime_configuration/docs/index.rst
    /libs/full/runtime_local/docs/index.rst
